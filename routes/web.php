@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('items', '\App\Http\Controllers\ItemController');
-Route::resource('categories', '\App\Http\Controllers\CategoryController');
+Route::resource('items', '\App\Http\Controllers\ItemController')->middleware('auth');
+Route::resource('categories', '\App\Http\Controllers\CategoryController')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

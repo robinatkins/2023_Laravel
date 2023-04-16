@@ -9,9 +9,28 @@ Laravel Project
 @endsection
 
 @section('scripts')
-{!! Html::script('/bower_components/parsleyjs/dist/parsley.min.js') !!}
+    
+    <script src="https://cdn.tiny.cloud/1/7iw4raxczr993nsih761ham4xalj32p9r0k0uu2p8bnjlm5s/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        $(document).ready(function(){
+            $('#description').on('change', function(){
+                $('#description').parsley().validate();
+            });
+            tinymce.init({
+                selector: '#description',
+                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                toolbar_mode: 'floating',
+                height: 400,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        editor.save();
+                        $('#description').parsley().validate();
+                    });
+                }
+            });
+        });
+    </script> 
 @endsection
-
 @section('css')
 {!! Html::style('/css/parsley.css') !!}
 @endsection

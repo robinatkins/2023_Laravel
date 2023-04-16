@@ -10,7 +10,14 @@ use Storage;
 use Session;
 
 class ItemController extends Controller
-{
+{       
+    
+    // Authentication 
+        
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -171,7 +178,9 @@ class ItemController extends Controller
         $item = Item::find($id);
         if (isset($item->picture)) {
             $oldFilename = $item->picture;
-            Storage::delete('public/images/items/'.$oldFilename);                
+            Storage::delete('public/images/items/'.$oldFilename); 
+            Storage::delete('public/images/items/'. 'tn_'. $oldFilename);
+            Storage::delete('public/images/items/'. 'lrg_'. $oldFilename);                    
         }
         $item->delete();
 
