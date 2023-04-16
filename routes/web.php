@@ -15,12 +15,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('items', '\App\Http\Controllers\ItemController')->middleware('auth');
 Route::resource('categories', '\App\Http\Controllers\CategoryController')->middleware('auth');
-Route::resource('public', '\App\Http\Controllers\PublicController');
 
 Route::get('/public/{id}/details', 'App\Http\Controllers\PublicController@details')->name('public.details');
 
+Route::get('/public/{id}/update_cart', 'App\Http\Controllers\PublicController@update_cart')->name('public.update_cart');
+Route::put('/public/{id}/update_cart', 'App\Http\Controllers\PublicController@update_cart')->name('public.update_cart');
+Route::delete('/public/{id}/update_cart', 'App\Http\Controllers\PublicController@update_cart')->name('public.update_cart');
+Route::patch('/public/{id}/update_cart', 'App\Http\Controllers\PublicController@update_cart')->name('public.update_cart');
 
 
+Route::get('/public/{id}/addToCart', 'App\Http\Controllers\PublicController@addToCart')->name('public.addToCart');
+Route::get('/public/{id}/remove_item', 'App\Http\Controllers\PublicController@remove_item')->name('public.remove_item');
+Route::delete('/public/{id}/remove_item', 'App\Http\Controllers\PublicController@remove_item')->name('public.remove_item');
+
+
+
+
+
+
+Route::resource('public', '\App\Http\Controllers\PublicController');
 Route::get('/', function () {
     return view('welcome');
 });

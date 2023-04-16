@@ -23,7 +23,9 @@ Laravel Project
             <p><strong>Quantity:</strong> {{ $item->quantity }}</p>
             <p><strong>SKU:</strong> {{ $item->sku }}</p>
 				<div style='float:left; margin-right:5px;'>
-					
+					  @if($item->quantity > 0)
+						<a href="{{ route('public.addToCart', $item->id) }}" class="btn btn-success btn-sm" method="POST"> Buy Now</a>
+					@endif
 				</div>
 			</div>
 		</div>
